@@ -1,0 +1,28 @@
+{
+  "name": "use-inertia-simple-page-transition",
+  "author": "Giandomenico Di Salvatore",
+  "description": "React hook that triggers css transitions inside Inertia layouts",
+  "main": "use-inertia-simple-page-transition.js",
+  "scripts": {
+    "test": "."
+  },
+  "repository": {
+    "type": "git",
+    "url": "ok"
+  },
+  "peerDependencies": {
+    "@inertiajs/inertia": "^0.11.0",
+    "react": "^18.2.0"
+  },
+  "keywords": [
+    "laravel",
+    "inertia",
+    "react",
+    "hook",
+    "page-transitions",
+    "css-transitions",
+    "transitions"
+  ],
+  "license": "BSD-2-Clause",
+  "version": "1.0.0"
+}
