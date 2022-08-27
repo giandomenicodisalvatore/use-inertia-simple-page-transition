@@ -1,32 +1,45 @@
 # use-inertia-simple-page-transition
+[![less than 500B minzipped](https://badgen.net/bundlephobia/minzip/use-inertia-simple-page-transition)](https://bundlephobia.com/package/use-inertia-simple-page-transition)
 
-React hook that triggers css page transitions inside Inertia layouts. 
+Simple and tiny [React 18](https://reactjs.org) hook that triggers css page transitions inside [Inertia](https://inertiajs.com) layouts. 
 
-It was built for keeping my own code *d-r-y* between different layouts and for [learning purposes](https://laracasts.com/discuss/channels/inertia/how-to-achieve-page-transitions-with-inertiareact).
+Built for *keeping my own code dry* between different layout components and for [learning purposes](https://laracasts.com/discuss/channels/inertia/how-to-achieve-page-transitions-with-inertiareact).
 
-## Usage
+## Installation 
+```bash
+npm i use-inertia-simple-page-transition
+```
 
-This hook should be used **inside a [persistent layout](https://inertiajs.com/pages#persistent-layouts)**. It returns the appropriate css transition class as a **reactive string** that you can **interpolate with other classes**.
+Although you are going to see some errors when installing it, **using React 18 with Inertia is perfectly fine**. 
+Just make sure to ignore the errors with `--legacy-peer-deps` flag.
 
-The returned string should be added to a **component that wraps the entire `{ Page }`**, otherwise the page transition won't work.
+```bash
+npm i use-inertia-simple-page-transition --legacy-peer-deps
+```
 
-Example using **[animate.css](https://animate.style/)** classes.
+## Example 
+
+Using **[animate.css](https://animate.style/)** classes.
 
 ```jsx
+// in LayoutWithPageTransition.jsx
 import usePageTransition from 'use-inertia-simple-page-transition'
 
 export default function LayoutWithPageTransition(Page) {
-
-const transitionClass = usePageTransition({
+  const transitionClass = usePageTransition({
     onEnter: 'animate__fadeIn',
     onLeave: 'animate__fadeOut'
   })
 
-  return <div className={`animate__animated ${transitionClass}`}>
-    { Page }
-  </div>
+  return <div className={
+    `other classes animate__animated ${transitionClass}`
+  }>{ Page }</div>
 }
 ```
+
+## Gotcha
+
+The returned class string should be assigned to a **tag that wraps the entire `{ Page }`**, otherwise the page transition won't work.
 
 ## Note
 

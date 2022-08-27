@@ -1,18 +1,11 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
 
-export default function useInertiaSimplePageTransition({
-	onEnter = "",
-	onLeave = "",
-} = {}) {
-	const [transitioning, setTransitioning] = useState(null);
-
-	const handle = useCallback((e) => () => setTransitioning(e === "start"), []);
-
+export default ({ onEnter = "", onLeave = "" } = {}) => {
+	const [leaving, setLeaving] = useState(null);
 	useEffect(() => {
-		Inertia.on("finish", handle("finish"));
-		Inertia.on("start", handle("start"));
+		Inertia.on("start", () => setLeaving(true));
+		Inertia.on("finish", () => setLeaving(false));
 	}, []);
-
-	return useMemo(() => (transitioning ? onLeave : onEnter), [transitioning]);
-}
+	return useMemo(() => (leaving ? onLeave : onEnter), [leaving]);
+};
